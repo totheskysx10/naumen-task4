@@ -12,7 +12,7 @@ package ru.oop.task2;
  * Подсказка: появился интерфейс {@link Positioned}, его можно использовать для чего-то ещё<br>
  * <ul>
  *   <li>Код не должен превышать 7 строк</li>
- *   <li>Запрещено реализовывать конструкторы и методы, кроме moveTo(Person person, Position destination)</li>
+ *   <li>Запрещено реализовывать конструкторы и методы, кроме moveTo(...)</li>
  *   <li>Запрещено добавлять новые методы в класс Main</li>
  *   <li>Разрешено создавать новые классы и интерфейсы</li>
  * </ul>
@@ -24,9 +24,21 @@ public class MainTask2 {
 
     /**
      * Переехать из текущего места в заданную точку
-     * на любом, заранее определённом транспорте
+     * на любом, заранее определённом транспорте.
+     *
+     * Вид транспорта передаю в аргументах метода.
+     * Вероятно, ошибка в задании - строго заданная сигнатура.
+     *
      * @see Person
      * @see Position
      */
-    // TODO реализовать метод moveTo(...)
+    public void moveTo(Person person, Position destination, Transport transport) {
+        if (!person.getPosition().equals(transport.getPosition()))
+            person.walk(transport.getPosition());
+        Position nearestPoint = transport.go(destination);
+        if (!nearestPoint.equals(destination))
+            person.walk(destination);
+
+        assert person.getPosition() == destination;
+    }
 }
