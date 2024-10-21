@@ -10,7 +10,8 @@ public interface Transport extends Positioned {
      * Или до точки, куда можно проехать.
      *
      * @param destination место, до которого нужно доехать
+     * @param person человек, который едет
      * @return место, до которого удалось доехать
      */
-    Position go(Position destination);
+    Position go(Person person, Position destination);
 }

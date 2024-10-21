@@ -35,7 +35,7 @@ public class MainTask3 {
             person.walk(transports.get(0).getPosition());
         Position nearestPoint = person.getPosition();
         for (Transport transport : transports) {
-            nearestPoint = transport.go(destination);
+            nearestPoint = transport.go(person, destination);
             if (nearestPoint.equals(destination))
                 break;
         }

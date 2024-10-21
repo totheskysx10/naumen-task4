@@ -35,7 +35,7 @@ public class MainTask2 {
     public void moveTo(Person person, Position destination, Transport transport) {
         if (!person.getPosition().equals(transport.getPosition()))
             person.walk(transport.getPosition());
-        Position nearestPoint = transport.go(destination);
+        Position nearestPoint = transport.go(person, destination);
         if (!nearestPoint.equals(destination))
             person.walk(destination);
 
