@@ -24,6 +24,9 @@ public class MainTask3 {
      * Переехать из текущего места в заданную точку
      * на любом, заранее определённом транспорте.
      *
+     * Виды транспорта передаю в аргументах метода.
+     * Вероятно, ошибка в задании - строго заданная сигнатура.
+     *
      * Позволяет доехать на заданном транспорте с пересадками до той точки, куда это возможно,
      * а затем дойти до места назначения пешком, если нужно.
      * Есть возможность не продолжать поездку, если удалось доехать до точки назначения,
@@ -33,21 +36,19 @@ public class MainTask3 {
      * @param destination место назначения
      * @param transports список видов транспорта
      *
-     * Виды транспорта передаю в аргументах метода.
-     * Вероятно, ошибка в задании - строго заданная сигнатура.
      *
      * @see Person
      * @see Position
      */
     public void moveTo(Person person, Position destination, List<Transport> transports) {
-        if (!person.getPosition().equals(transports.get(0).getPosition()))
-            person.walk(transports.get(0).getPosition());
         Position nearestPoint = person.getPosition();
         for (Transport transport : transports) {
-            nearestPoint = transport.go(person, destination);
-            if (nearestPoint.equals(destination)) {
-                break;
+            if (!person.getPosition().equals(transport.getPosition())) {
+                person.walk(transport.getPosition());
             }
+            nearestPoint = transport.go(person, destination);
+            if (nearestPoint.equals(destination))
+                break;
         }
         if (!nearestPoint.equals(destination)) {
             person.walk(destination);
