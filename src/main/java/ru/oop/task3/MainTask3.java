@@ -22,7 +22,16 @@ public class MainTask3 {
 
     /**
      * Переехать из текущего места в заданную точку
-     * на любом, заранее определённом транспорте
+     * на любом, заранее определённом транспорте.
+     *
+     * Позволяет доехать на заданном транспорте с пересадками до той точки, куда это возможно,
+     * а затем дойти до места назначения пешком, если нужно.
+     * Есть возможность не продолжать поездку, если удалось доехать до точки назначения,
+     * использовав не все виды транспорта.
+     *
+     * @param person человек, который едет
+     * @param destination место назначения
+     * @param transports список видов транспорта
      *
      * Виды транспорта передаю в аргументах метода.
      * Вероятно, ошибка в задании - строго заданная сигнатура.
@@ -36,11 +45,13 @@ public class MainTask3 {
         Position nearestPoint = person.getPosition();
         for (Transport transport : transports) {
             nearestPoint = transport.go(person, destination);
-            if (nearestPoint.equals(destination))
+            if (nearestPoint.equals(destination)) {
                 break;
+            }
         }
-        if (!nearestPoint.equals(destination))
+        if (!nearestPoint.equals(destination)) {
             person.walk(destination);
+        }
 
         assert person.getPosition() == destination;
     }
