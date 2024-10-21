@@ -18,10 +18,21 @@ package ru.oop.task1;
 public class MainTask1 {
 
     /**
-     * Переехать из текущего места в заданную точку
+     * Переехать из текущего места в заданную точку.
+     *
+     * Позволяет доехать на машине до той точки, куда это возможно,
+     * а затем дойти до места назначения пешком, если нужно.
+     *
+     * @param person человек, который едет
+     * @param destination место назначения
      */
     public void moveTo(Person person, Position destination) {
-        // TODO
+        Car car = new Car(person, person.getPosition());
+        Position nearestPoint = car.go(destination);
+        if (!nearestPoint.equals(destination)) {
+            person.walk(destination);
+        }
+
         assert person.getPosition() == destination;
     }
 }
